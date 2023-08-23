@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { convertirFechaSinGuiones } from "../helpers/funciones";
+import { config, convertirFechaSinGuiones } from "../helpers/funciones";
 import { useEffect } from "react";
 import axiosCapic from "../helpers/axios";
 
@@ -13,11 +13,12 @@ const NuevaAportacion = () => {
   useEffect(() => {
     const obtenerMiembro = async () => {
       try {
-        const { data } = await axiosCapic.get(`/obtenerMiembro/${id}`);
+        const { data } = await axiosCapic.get(`/obtenerMiembro/${id}`, config);
         console.log(data);
         setValue("miembro", data.curp);
         const { data: respuesta } = await axiosCapic.get(
-          `obtenerGrupo/${data.grupo}`
+          `obtenerGrupo/${data.grupo}`,
+          config
         );
         console.log(respuesta);
         setValue("aporte", respuesta.cantidad);
@@ -35,11 +36,15 @@ const NuevaAportacion = () => {
     }
     console.log(Number(data.aporte));
     try {
-      const { data: respuesta } = await axiosCapic.post("nuevaAportacion", {
-        ...data,
-        fecha: convertirFechaSinGuiones(data.fecha),
-        aporte: Number(data.aporte),
-      });
+      const { data: respuesta } = await axiosCapic.post(
+        "nuevaAportacion",
+        {
+          ...data,
+          fecha: convertirFechaSinGuiones(data.fecha),
+          aporte: Number(data.aporte),
+        },
+        config
+      );
       Swal.fire({
         title: "Aportacion Creada Correctamente",
         icon: "success",

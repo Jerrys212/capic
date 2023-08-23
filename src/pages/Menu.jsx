@@ -9,20 +9,28 @@ const Menu = () => {
     <div className="container mt-11 mx-auto px-11">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="max-w-md mx-auto  overflow-hidden">
-          <Card titulo={"Miembros"} imagen={miembros} enlace={"/miembros"} />
+          <Card
+            titulo={"Miembros"}
+            imagen={miembros}
+            enlace={"/admin/miembros"}
+          />
         </div>
         <div className="max-w-md mx-auto  overflow-hidden">
           <Card
             titulo={"Aportaciones"}
             imagen={aportaciones}
-            enlace={"/aportaciones"}
+            enlace={"/admin/aportaciones"}
           />
         </div>
         <div className="max-w-md mx-auto  overflow-hidden">
-          <Card titulo={"Prestamos"} imagen={prestamos} enlace={"/prestamos"} />
+          <Card
+            titulo={"Prestamos"}
+            imagen={prestamos}
+            enlace={"/admin/prestamos"}
+          />
         </div>
         <div className="max-w-md mx-auto  overflow-hidden">
-          <Card titulo={"Grupos"} imagen={grupos} enlace={"/grupos"} />
+          <Card titulo={"Grupos"} imagen={grupos} enlace={"/admin/grupos"} />
         </div>
       </div>
     </div>

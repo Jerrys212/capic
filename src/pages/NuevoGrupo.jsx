@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosCapic from "../helpers/axios";
+import { config } from "../helpers/funciones";
 
 const NuevoGrupo = () => {
   const { register, handleSubmit } = useForm();
@@ -15,7 +16,11 @@ const NuevoGrupo = () => {
     }
 
     try {
-      const { data: respuesta } = await axiosCapic.post("/nuevoGrupo", data);
+      const { data: respuesta } = await axiosCapic.post(
+        "/nuevoGrupo",
+        data,
+        config
+      );
       Swal.fire({ title: respuesta.replyText, icon: "success" });
       setTimeout(() => {
         navigate("/grupos");

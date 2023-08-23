@@ -44,28 +44,31 @@ const Navbar = () => {
               : "hidden"
           } `}
         >
-          <Link to="/" className="text-white block hover:text-orange-400">
+          <Link to="/admin" className="text-white block hover:text-orange-400">
             Inicio
           </Link>
           <Link
-            to={"/miembros"}
+            to={"/admin/miembros"}
             className="text-white block hover:text-orange-400"
           >
             Miembros
           </Link>
           <Link
-            to="/aportaciones"
+            to="/admin/aportaciones"
             className="text-white block hover:text-orange-400"
           >
             Aportes
           </Link>
           <Link
-            to="/prestamos"
+            to="/admin/prestamos"
             className="text-white block hover:text-orange-400"
           >
             Prestamos
           </Link>
-          <Link to="/grupos" className="text-white block hover:text-orange-400">
+          <Link
+            to="/admin/grupos"
+            className="text-white block hover:text-orange-400"
+          >
             Grupos
           </Link>
         </div>

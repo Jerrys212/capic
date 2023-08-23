@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosCapic from "../helpers/axios";
+import { config } from "../helpers/funciones";
 
 const EditarMiembro = () => {
   const { id } = useParams();
@@ -12,7 +13,7 @@ const EditarMiembro = () => {
   useEffect(() => {
     const obtenerMiembro = async () => {
       try {
-        const { data } = await axiosCapic(`/obtenerMiembro/${id}`);
+        const { data } = await axiosCapic(`/obtenerMiembro/${id}`, config);
 
         const { createdAt, updatedAt, rol, ...nuevoObjeto } = data;
         Object.keys(nuevoObjeto).forEach((key) => {
@@ -25,7 +26,7 @@ const EditarMiembro = () => {
 
     const obtenerGrupos = async () => {
       try {
-        const { data } = await axiosCapic(`/obtenerGrupos`);
+        const { data } = await axiosCapic(`/obtenerGrupos`, config);
         setGrupos(data);
       } catch (error) {
         console.log(error);
@@ -42,10 +43,14 @@ const EditarMiembro = () => {
     }
 
     try {
-      const { data: respuesta } = await axiosCapic.put(`/editarMiembro`, {
-        ...data,
-        id: data._id,
-      });
+      const { data: respuesta } = await axiosCapic.put(
+        `/editarMiembro`,
+        {
+          ...data,
+          id: data._id,
+        },
+        config
+      );
       Swal.fire({
         title: "Miembro Modificado Correctamente",
         icon: "success",

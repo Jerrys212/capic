@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import axiosCapic from "../helpers/axios";
+import { config } from "../helpers/funciones";
 
 const NuevoMiembro = () => {
   const { register, handleSubmit } = useForm();
@@ -13,14 +14,18 @@ const NuevoMiembro = () => {
     }
 
     try {
-      const { data: respuesta } = await axiosCapic.post("nuevoMiembro", data);
+      const { data: respuesta } = await axiosCapic.post(
+        "/nuevoMiembro",
+        { ...data, password: data.curp },
+        config
+      );
       Swal.fire({
         title: "Miembro Creado Correctamente",
         icon: "success",
         text: respuesta.replyText,
       });
       setTimeout(() => {
-        navigate("/miembros");
+        navigate("/admin/miembros");
       }, 2000);
     } catch (error) {
       Swal.fire({ title: error.response.data.replyText, icon: "error" });

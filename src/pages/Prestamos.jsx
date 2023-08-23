@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Spinner from "../components/Spinner";
-import { convertirFormatoFecha } from "../helpers/funciones";
+import { config, convertirFormatoFecha } from "../helpers/funciones";
 import { Imprimir } from "../components/Iconos";
 import { useForm } from "react-hook-form";
 import axiosCapic from "../helpers/axios";
@@ -12,7 +12,7 @@ const Prestamos = () => {
   useEffect(() => {
     const obtenerPrestamos = async () => {
       try {
-        const { data } = await axiosCapic("/obtenerPrestamos");
+        const { data } = await axiosCapic("/obtenerPrestamos", config);
         setTimeout(() => {
           setPrestamos(data);
         }, 1500);
@@ -33,7 +33,8 @@ const Prestamos = () => {
     try {
       const { data: respuesta } = await axiosCapic.post(
         "/obtenerPrestamos",
-        data
+        data,
+        config
       );
 
       setPrestamos(respuesta);

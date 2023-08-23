@@ -7,7 +7,7 @@ import {
   NuevoMiembroIcono,
 } from "../components/Iconos";
 import { useNavigate } from "react-router-dom";
-import { eliminarMiembro } from "../helpers/funciones";
+import { config, eliminarMiembro } from "../helpers/funciones";
 import Spinner from "../components/Spinner";
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
@@ -21,7 +21,7 @@ const Miembros = () => {
   useEffect(() => {
     const obtenerMiembros = async () => {
       try {
-        const { data } = await axiosCapic("/obtenerMiembros");
+        const { data } = await axiosCapic("/obtenerMiembros", config);
         setTimeout(() => {
           setMiembros(data);
         }, 1500);
@@ -43,7 +43,8 @@ const Miembros = () => {
     try {
       const { data: respuesta } = await axiosCapic.post(
         "/obtenerMiembro",
-        data
+        data,
+        config
       );
 
       setMiembros([respuesta]);
@@ -81,7 +82,7 @@ const Miembros = () => {
               </button>
             </div>
           </form>
-          <NuevoMiembroIcono onClick={() => navigate("/nuevoMiembro")} />
+          <NuevoMiembroIcono onClick={() => navigate("/admin/nuevoMiembro")} />
         </div>
 
         <table className="min-w-full text-white divide-y text-center divide-gray-200">

@@ -90,6 +90,12 @@ const calcultarInteres = (cantidad, plazo) => {
   return total;
 };
 
+const config = {
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+};
+
 export {
   eliminarMiembro,
   eliminarGrupo,
@@ -97,4 +103,5 @@ export {
   calcularTotal,
   convertirFechaSinGuiones,
   calcultarInteres,
+  config,
 };

@@ -3,6 +3,7 @@ import axiosCapic from "../helpers/axios.js";
 import { NuevoMiembroIcono } from "../components/Iconos";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import { config } from "../helpers/funciones.js";
 
 const Grupos = () => {
   const [grupos, setGrupos] = useState([]);
@@ -11,7 +12,7 @@ const Grupos = () => {
   useEffect(() => {
     const obtenerGrupos = async () => {
       try {
-        const { data } = await axiosCapic("/obtenerGrupos");
+        const { data } = await axiosCapic("/obtenerGrupos", config);
         setTimeout(() => {
           setGrupos(data);
         }, 1500);

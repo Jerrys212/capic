@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { calcultarInteres, calcularTotal } from "../helpers/funciones";
+import { calcultarInteres, calcularTotal, config } from "../helpers/funciones";
 import { useEffect } from "react";
 import axiosCapic from "../helpers/axios";
 
@@ -13,7 +13,7 @@ const NuevoPrestamo = () => {
   useEffect(() => {
     const obtenerMiembro = async () => {
       try {
-        const { data } = await axiosCapic.get(`/obtenerMiembro/${id}`);
+        const { data } = await axiosCapic.get(`/obtenerMiembro/${id}`, config);
         console.log(data);
         setValue("curp", data.curp);
       } catch (error) {
@@ -45,14 +45,16 @@ const NuevoPrestamo = () => {
     try {
       const { data: respuesta } = await axios.post(
         "http://localhost:4500/capic/prestamoValido",
-        { miembro: data.curp, prestamo: data.total }
+        { miembro: data.curp, prestamo: data.total },
+        config
       );
       console.log(respuesta);
 
       if (respuesta.valido) {
         const { data: response } = await axios.post(
           "http://localhost:4500/capic/nuevoPrestamo",
-          { ...data, miembro: data.curp }
+          { ...data, miembro: data.curp },
+          config
         );
 
         Swal.fire({
