@@ -118,14 +118,18 @@ const Miembros = () => {
                   <td className="px-6 py-4 flex justify-center space-x-2 ">
                     <NuevaAportacionIcono
                       onClick={() =>
-                        navigate(`/nuevaAportacion/${miembro._id}`)
+                        navigate(`/admin/nuevaAportacion/${miembro._id}`)
                       }
                     />
                     <NuevoPrestamoIcono
-                      onClick={() => navigate(`/nuevoPrestamo/${miembro._id}`)}
+                      onClick={() =>
+                        navigate(`/admin/nuevoPrestamo/${miembro._id}`)
+                      }
                     />
                     <EditarMiembroIcono
-                      onClick={() => navigate(`/editarMiembro/${miembro._id}`)}
+                      onClick={() =>
+                        navigate(`/admin/editarMiembro/${miembro._id}`)
+                      }
                     />
                     <BorrarMiembroIcono
                       onClick={() => {

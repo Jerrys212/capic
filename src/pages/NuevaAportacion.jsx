@@ -51,7 +51,7 @@ const NuevaAportacion = () => {
         text: respuesta.replyText,
       });
       setTimeout(() => {
-        navigate("/aportaciones");
+        navigate("/admin/aportaciones");
       }, 2000);
     } catch (error) {
       console.log(error);

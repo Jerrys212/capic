@@ -56,6 +56,9 @@ const EditarMiembro = () => {
         icon: "success",
         text: respuesta.replyText,
       });
+      setTimeout(() => {
+        navigate("/admin/miembros");
+      }, 1500);
     } catch (error) {
       console.log(error);
       Swal.fire({ title: error.response.data.replyText, icon: "error" });

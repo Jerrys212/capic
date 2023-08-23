@@ -45,7 +45,7 @@ const Grupos = () => {
               </button>
             </div>
           </form>
-          <NuevoMiembroIcono onClick={() => navigate("/nuevoGrupo")} />
+          <NuevoMiembroIcono onClick={() => navigate("/admin/nuevoGrupo")} />
         </div>
 
         <table className="min-w-full text-white divide-y text-center divide-gray-200">

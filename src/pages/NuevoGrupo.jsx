@@ -23,7 +23,7 @@ const NuevoGrupo = () => {
       );
       Swal.fire({ title: respuesta.replyText, icon: "success" });
       setTimeout(() => {
-        navigate("/grupos");
+        navigate("/admin/grupos");
       }, 1500);
     } catch (error) {
       console.log(error);

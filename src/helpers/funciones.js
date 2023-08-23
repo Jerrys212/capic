@@ -25,20 +25,15 @@ const eliminarGrupo = async (id) => {
 };
 
 const convertirFormatoFecha = (fechaString) => {
-  const anio = fechaString.slice(0, 4);
-  const diaDelAnio = parseInt(fechaString.slice(4));
-
-  const fecha = new Date(anio, 0); // Establecer el primer día del año
-  fecha.setDate(diaDelAnio); // Establecer el día del año
-
-  const mes = fecha.getMonth() + 1;
-  const dia = fecha.getDate();
+  const dia = fechaString.substring(6, 9);
+  const mes = fechaString.substring(4, 6);
+  const anio = fechaString.substring(0, 4);
 
   // Asegurarse de tener dos dígitos para mes y día
-  const mesFormato = mes < 10 ? `0${mes}` : mes;
-  const diaFormato = dia < 10 ? `0${dia}` : dia;
 
-  return `${anio}/${mesFormato}/${diaFormato}`;
+  console.log(fechaString);
+
+  return `${anio}/${mes}/${dia}`;
 };
 
 const convertirFechaSinGuiones = (fecha) => {

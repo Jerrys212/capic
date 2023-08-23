@@ -1,7 +1,12 @@
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import { calcultarInteres, calcularTotal, config } from "../helpers/funciones";
+import {
+  calcultarInteres,
+  calcularTotal,
+  config,
+  convertirFechaSinGuiones,
+} from "../helpers/funciones";
 import { useEffect } from "react";
 import axiosCapic from "../helpers/axios";
 
@@ -43,17 +48,21 @@ const NuevoPrestamo = () => {
     }
     console.log(data);
     try {
-      const { data: respuesta } = await axios.post(
-        "http://localhost:4500/capic/prestamoValido",
+      const { data: respuesta } = await axiosCapic.post(
+        "/prestamoValido",
         { miembro: data.curp, prestamo: data.total },
         config
       );
       console.log(respuesta);
 
       if (respuesta.valido) {
-        const { data: response } = await axios.post(
-          "http://localhost:4500/capic/nuevoPrestamo",
-          { ...data, miembro: data.curp },
+        const { data: response } = await axiosCapic.post(
+          "/nuevoPrestamo",
+          {
+            ...data,
+            miembro: data.curp,
+            fecha: convertirFechaSinGuiones(data.fecha),
+          },
           config
         );
 
@@ -63,7 +72,7 @@ const NuevoPrestamo = () => {
         });
 
         setTimeout(() => {
-          navigate("/prestamos");
+          navigate("/admin/prestamos");
         }, 1500);
         return response;
       } else {
